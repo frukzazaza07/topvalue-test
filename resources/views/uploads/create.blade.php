@@ -1,0 +1,63 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card border-0 shadow rounded">
+                <div class="card-body">
+                    <form action="/uploads/store" method="POST" enctype="multipart/form-data">
+
+                        @csrf
+
+                        <div class="form-group">
+                            <label class="font-weight-bold">Image file</label>
+                            <input type="file" class="form-control @error('image') is-invalid @enderror" name="image">
+
+                            <!-- error message untuk title -->
+                            @error('image')
+                            <div class="alert alert-danger mt-2">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+
+                        <!-- <div class="form-group">
+                            <label class="font-weight-bold">Category name</label>
+                            <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" placeholder="Masukkan Judul Post">
+
+                            @error('title')
+                            <div class="alert alert-danger mt-2">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div> -->
+
+                        <!-- <div class="form-group">
+                            <label class="font-weight-bold">KONTEN</label>
+                            <textarea class="form-control @error('content') is-invalid @enderror" name="content" rows="5" placeholder="Masukkan Konten Post">{{ old('content') }}</textarea>
+
+                            @error('content')
+                            <div class="alert alert-danger mt-2">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div> -->
+
+                        <button type="submit" class="btn btn-md btn-primary">Submit</button>
+                        <button type="reset" class="btn btn-md btn-warning">Reset</button>
+                        @include('errorMessage.index')
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+
+<script>
+    CKEDITOR.replace('content');
+</script>
+@endsection
